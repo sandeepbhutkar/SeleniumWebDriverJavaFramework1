@@ -1,0 +1,30 @@
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class LoginPage {
+
+	WebDriver driver;
+	
+	public LoginPage(WebDriver d){
+		driver = d;
+	}
+	
+	By loginLink = By.linkText("Sign in");
+	By EmailId = By.cssSelector("#login_id");
+	
+	//public LoginPage(WebDriver d){
+		//driver = d;
+	//}
+	
+	public void clickSignInLink() {
+		driver.findElement(loginLink).click();
+		
+	}
+	public void setEmailId(String email) {
+		driver.findElement(EmailId).sendKeys(email);
+	}
+	          
+
+}

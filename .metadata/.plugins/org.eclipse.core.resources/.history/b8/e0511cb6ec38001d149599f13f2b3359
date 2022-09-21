@@ -1,0 +1,40 @@
+package base;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class BaseTest {
+	
+	public static WebDriver driver;
+	public static FileReader fr;
+	public static Properties pr = new Properties();
+
+	public void setUp() throws IOException {
+		
+		if (driver==null) {
+			FileReader fr = new FileReader("C:\\\\Users\\\\sbhutkar\\\\eclipse-workspace\\\\SeleniumAutomationFramework\\\\TestAutomationFramework\\\\src\\\\test\\\\resources\\\\configFiles\\\\config.properties");
+			pr.load(fr);
+		}
+		
+		if(pr.getProperty("browser").equalsIgnoreCase("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			WebDriver driver = new ChromeDriver();
+			driver.manage().window().maximize();
+		}
+		else if(pr.getProperty("browser").equalsIgnoreCase("edge")) {
+			WebDriverManager.edgedriver()
+			WebDriver driver = new EdgeDriver();
+			driver.manage().window().maximize();
+		}
+
+	}
+
+}

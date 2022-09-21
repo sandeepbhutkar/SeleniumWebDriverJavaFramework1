@@ -1,0 +1,30 @@
+package testCases;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class MyFirstTest {
+
+	public static void main(String[] args) throws IOException {
+		
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.zoho.com/");
+		driver.findElement(By.linkText("Sign in")).click();
+		driver.findElement(By.cssSelector("#login_id")).sendKeys("sandeep.bhutkar@gmail.com");
+		driver.findElement(By.xpath("//span[contains(text(),'Next')]")).click();	
+		driver.findElement(By.cssSelector("#password")).sendKeys("aikon58n");
+		driver.findElement(By.xpath("/html/body/div[5]/div[1]/div[3]/div[2]/form[1]/button/span")).click();
+        driver.close();
+	}
+
+}
